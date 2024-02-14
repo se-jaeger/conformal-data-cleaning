@@ -1,0 +1,31 @@
+task_id,name,tabular,violates,note
+30,page-blocks,True,,Title of Database: Blocks Classification
+151,electricity,False,,Australian New South Wales Electricity Market
+189,kin8nm,False,Heterogeneous columns,forward kinematics of an 8 link robot arm
+198,delta_elevators,True,,task of controlling the ailerons of a F16 aircraft
+218,house_8L,True,,1990 US census
+251,BNG(breast-w),True,,
+310,mammography,True,,Mammography dataset
+375,JapaneseVowels,False,I.I.D. data,LPC cepstrum coefficients taken from nine male speakers
+725,bank8FM,True,,
+823,houses,True,,
+1046,mozilla4,True,,Modeling the Effect of Size on Defect Proneness for Open-Source Software
+1193,BNG(lowbwt),True,,
+1199,BNG(echoMonths),True,,
+1200,BNG(stock),True,,
+4135,Amazon_employee_access,True,,Employees are manually allowed or denied access to resources over time
+23395,COMET_MC_SAMPLE,False,,
+23515,sulfur,True,,Soft Sensors for Monitoring and Control of Industrial Processes
+40498,wine-quality-white,True,,wine-quality-white
+40685,shuttle,False,I.I.D. data,shuttle - probably time depending
+40922,Run_or_walk_information,False,I.I.D. data,Detect whether a person is running or walking - sensor data collected from iOS devices.
+42225,diamonds,True,,"prices and other attributes of almost 54,000 diamonds"
+42493,airlines,True,,"whether a given flight will be delayed, given the information of the scheduled departure"
+137,BNG(tic-tac-toe),False,Not deterministic,Tic Tac Toe
+1481,kr-vs-k,False,Not deterministic,Chess
+184,kropt,False,Not deterministic,Chess
+41027,jungle_chess_2pcs_raw_endgame_complete,False,Not deterministic,Game of Fighting Animals: https://arxiv.org/abs/1604.07312
+215,2dplanes,False,Real-world data,"2dplanes - ""Generate the values of the 10 attributes independently using the following probabilities:"""
+1459,artificial-characters,False,Heterogeneous columns,artificial-characters
+32,pendigits,False,Heterogeneous columns,Pen-Based Recognition of Handwritten Digits
+6,letter,False,Heterogeneous columns,Letter Image Recognition Data

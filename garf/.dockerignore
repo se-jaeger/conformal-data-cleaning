@@ -1,0 +1,27 @@
+## Basics
+
+# Editor
+.DS_Store
+.vscode
+
+# Python
+*.pyc
+.mypy_cache
+__pycache__
+*.iml
+.[v]env
+.ipynb_checkpoints
+project.egg-info
+
+# AutoGluon
+**AutogluonModels
+
+## Not necessary in Docker
+.venv
+data
+models
+results
+
+**.gitignore
+Makefile
+README.md

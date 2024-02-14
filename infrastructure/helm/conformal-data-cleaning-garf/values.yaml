@@ -1,0 +1,20 @@
+# Default values for conformal-data-cleaning.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+image:
+  repository:
+  user:
+  name: conformal-data-cleaning
+  pullPolicy: Always
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "garf"
+
+imagePullSecrets:
+  - name: private-registry-auth
+
+task_id:
+error_fractions:
+num_repetitions:
+results_path:
+models_path:

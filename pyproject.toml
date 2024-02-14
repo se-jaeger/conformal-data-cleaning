@@ -1,0 +1,47 @@
+[tool.poetry]
+name = "conformal-data-cleaning"
+version = "0.1.0"
+description = ""
+authors = ["Sebastian Jäger <git@sebastian-jaeger.me>"]
+
+[tool.poetry.scripts]
+run-experiment = "scripts.run_experiment:start"
+
+[tool.poetry.dependencies]
+python = "^3.9,<3.10"
+conformal-inference = { git = "https://github.com/se-jaeger/conformal-inference", tag = "cleaning-paper" }
+jenga = { git = "https://github.com/schelterlabs/jenga", tag = "cleaning-paper" }
+pyod = "^1.0.5"
+autogluon = { version = "^0.8.2", extras = ["all"] }
+scikit-learn = "<1.3.0"
+
+
+[tool.poetry.group.dev.dependencies]
+seaborn = "^0.11.2"
+jupyterlab = "^3.3.3"
+pytest = "^5.2"
+mypy = "^1.6.1"
+ruff = "^0.1.2"
+tqdm = "^4.66.1"
+ipywidgets = "^8.1.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.mypy]
+python_version = "3.9"
+disallow_untyped_defs = true
+ignore_missing_imports = true
+
+[tool.ruff]
+target-version = "py39"
+line-length = 120
+fix = true
+extend-include = ["*.ipynb"]
+select = ["ALL"]
+ignore = ["D100", "D104", "ISC003", "TD003"]
+
+
+[tool.ruff.pydocstyle]
+convention = "google"

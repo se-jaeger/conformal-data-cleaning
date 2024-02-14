@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: jupyter
+spec:
+  containers:
+    - name: jupyter
+      image: jupyter/datascience-notebook:python-3.9.13
+      imagePullPolicy: IfNotPresent
+      ports:
+        - containerPort: 8888
+      volumeMounts:
+        - mountPath: "/home/jovyan/data"
+          name: data
+        - mountPath: "/home/jovyan/processed"
+          name: processed
+        - mountPath: "/home/jovyan/results"
+          name: results
+        - mountPath: "/home/jovyan/models"
+          name: models
+        - mountPath: "/home/jovyan/notebooks"
+          name: notebooks
+      resources:
+        requests:
+          cpu: "12"
+          memory: 128Gi
+        limits:
+          cpu: "24"
+          memory: 256Gi
+  volumes:
+    - name: data
+      persistentVolumeClaim:
+        claimName: data-cleaning-data
+    - name: processed
+      persistentVolumeClaim:
+        claimName: data-cleaning-processed
+    - name: results
+      persistentVolumeClaim:
+        claimName: data-cleaning-results
+    - name: models
+      persistentVolumeClaim:
+        claimName: data-cleaning-models
+    - name: notebooks
+      persistentVolumeClaim:
+        claimName: data-cleaning-notebooks

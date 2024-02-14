@@ -1,0 +1,16 @@
+FROM python:3.7
+
+WORKDIR /conformal-data-cleaning
+
+# cache depedencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# add source code
+COPY . .
+
+# Make sure to build the root package and move dist/ folder to garf/dist
+# dependencies need to be the follwoing:
+# python = "^3.7,<3.10"
+# scikit-learn = "<1.3.0"
+RUN pip install dist/conformal_data_cleaning-0.1.0-py3-none-any.whl

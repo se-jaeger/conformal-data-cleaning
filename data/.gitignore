@@ -1,0 +1,9 @@
+# Ignore everything in this directory
+*
+# Except this file and .gitignore in sub directories
+!.gitignore
+!*_openml_ids.json
+!dataset_descriptions.csv
+!corrupted
+!training
+!test

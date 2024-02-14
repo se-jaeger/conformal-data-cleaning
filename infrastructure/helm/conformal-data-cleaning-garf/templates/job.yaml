@@ -1,0 +1,72 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "conformal-data-cleaning-garf.fullname" . }}
+  namespace: sjaeger
+  labels:
+    {{- include "conformal-data-cleaning-garf.labels" . | nindent 6 }}
+spec:
+  template:
+    metadata:
+      name: {{ template "conformal-data-cleaning-garf.fullname" . }}
+      labels:
+        app: {{ template "conformal-data-cleaning-garf.fullname" . }}
+        chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+        release: {{ .Release.Name }}
+        paper: {{ .Values.image.name }}
+        task: "{{ .Values.task_id }}"
+        baseline: garf
+    spec:
+      containers:
+        - name: experiment
+          image: {{ .Values.image.repository }}/{{ .Values.image.user }}/{{ .Values.image.name }}:{{ .Values.image.tag }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args:
+            - python
+            - main.py
+            - --task_id
+            - "{{ .Values.task_id }}"
+            - --error_fractions
+            {{- range $index, $error_fraction := (split " " .Values.error_fractions) }}
+            - "{{ $error_fraction }}"
+            {{- end }}
+            - --num_repetitions
+            - "{{ .Values.num_repetitions }}"
+            - --results_path
+            - "{{ .Values.results_path }}"
+            - --models_path
+            - "{{ .Values.models_path }}"
+          volumeMounts:
+          - mountPath: "/conformal-data-cleaning/data"
+            name: data
+          - mountPath: "/conformal-data-cleaning/results"
+            name: results
+          - mountPath: "/conformal-data-cleaning/models"
+            name: models
+          resources:
+            requests:
+              cpu: 48
+              memory: "256Gi"
+            limits:
+              cpu: 48
+              memory: "256Gi"
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: data-cleaning-data
+        - name: results
+          persistentVolumeClaim:
+            claimName: data-cleaning-results
+        - name: models
+          persistentVolumeClaim:
+            claimName: data-cleaning-models
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      restartPolicy: Never
+      priorityClassName: unimportant
+      tolerations:
+      - key: nvidia.com/gpu
+        operator: Exists
+        effect: NoSchedule
